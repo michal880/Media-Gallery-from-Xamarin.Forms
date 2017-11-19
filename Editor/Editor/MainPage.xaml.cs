@@ -14,7 +14,7 @@ namespace Editor
         public MainPage()
         {
             Button pickImage;
-            
+
             StackLayout panel = new StackLayout
             {
                 Spacing = 1
@@ -28,42 +28,33 @@ namespace Editor
                 VerticalOptions = LayoutOptions.CenterAndExpand
 
             });
-            
+
             panel.Children.Add(pickImage = new Button
             {
                 Text = "Click to select image",
                 VerticalOptions = LayoutOptions.End,
-                
-               
+
+
             });
-            
+
             pickImage.Clicked += async (sender, e) =>
             {
                 pickImage.IsEnabled = true;
                 Stream stream = await DependencyService.Get<IPicturePicker>().GetImageStreamAsync();
                 if (stream != null)
                 {
-                    
-                    //panel.Children[0]  = new Image
-                    //{
-                    //    Source = ImageSource.FromStream(() => stream),
-                    //    VerticalOptions = LayoutOptions.CenterAndExpand,
-                    //    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    //    Aspect = Aspect.AspectFill
-
-                    //};    
-                    Content = new Image{Source = ImageSource.FromStream(() => stream) };
+                    Content = new Image { Source = ImageSource.FromStream(() => stream) };
                 }
-                
+
             };
             this.Content = panel;
-            
+
 
 
         }
-        
-        
-        
+
+
+
 
     }
 }
